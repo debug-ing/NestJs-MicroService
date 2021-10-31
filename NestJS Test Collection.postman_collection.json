@@ -11,13 +11,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/user",
+					"raw": "http://localhost:3000/api/user",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"user"
 					]
 				}
@@ -39,13 +40,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/user/1",
+					"raw": "http://localhost:3000/api/user/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"user",
 						"1"
 					]
@@ -59,13 +61,14 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/user/2",
+					"raw": "http://localhost:3000/api/user/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"user",
 						"2"
 					]
@@ -88,13 +91,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/user",
+					"raw": "http://localhost:3000/api/user",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"user"
 					]
 				}
@@ -107,13 +111,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/user/1",
+					"raw": "http://localhost:3000/api/user/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
+						"api",
 						"user",
 						"1"
 					]
