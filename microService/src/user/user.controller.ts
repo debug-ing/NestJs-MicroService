@@ -1,5 +1,5 @@
 import { Controller } from '@nestjs/common';
-import {DeleteDto, GetDto, UserDto, UserUpdateDto} from "./user.dto";
+import {DeleteDto, UserDto, UserUpdateDto} from "./user.dto";
 import {GrpcMethod} from "@nestjs/microservices";
 import {Metadata, ServerUnaryCall} from "@grpc/grpc-js";
 import {UserService} from "./user.service";

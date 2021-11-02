@@ -48,8 +48,3 @@ export class DeleteDto {
     @IsNotEmpty()
     id: number;
 }
-export class GetDto {
-    @IsNumber()
-    @IsNotEmpty()
-    id: number;
-}
