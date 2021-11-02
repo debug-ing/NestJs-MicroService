@@ -12,7 +12,7 @@ interface UserGrpcService {
     getItem(data:{id:number}):Observable<any>;
     get(data:{}):Observable<{id:number,email:string,password:string,name:string,lastName:string,createdAt:string,updatedAt:string}[]>;
 
-    update(data:{id:number,email:string,password:string,name:string,last:string}):Observable<any>;
+    update(data:{id:number,email:string,password:string,name:string,lastName:string}):Observable<any>;
 }
 
 @Injectable()
@@ -39,7 +39,7 @@ export class UserService  implements  OnModuleInit {
         return await this.userGrpcService.create(data).toPromise();
     }
     async update(id:number,data:any){
-        return await this.userGrpcService.update({id:id,email:data.email,password:data.password,name:data.name,last:data.lastName}).toPromise();
+        return await this.userGrpcService.update({id:id,email:data.email,password:data.password,name:data.name,lastName:data.lastName}).toPromise();
     }
     async delete(id:number){
         let data = await this.userGrpcService.delete({id:id}).toPromise();
