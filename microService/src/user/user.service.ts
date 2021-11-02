@@ -3,9 +3,10 @@ import {InjectRepository} from "@nestjs/typeorm";
 import {User} from "./user.entity";
 import {Repository} from "typeorm";
 
+
 @Injectable()
 export class UserService {
-    constructor(@InjectRepository(User) private readonly userRepository:Repository<User>,) {
+    constructor(@InjectRepository(User) private readonly userRepository:Repository<User>) {
     }
     async get():Promise<User[]>{
         return await this.userRepository.find();
@@ -17,13 +18,17 @@ export class UserService {
         return await this.userRepository.save(data);
     }
     async delete(id:number):Promise<boolean>{
-         await this.userRepository.createQueryBuilder().delete().from(User).where("id = :id", { id: id }).execute();
-         return true;
+        const del = await this.userRepository.delete(id);
+        console.log(del);
+        if (del['affected'] == 0){
+            return false;
+        }else{
+            return true;
+        }
     }
-    async update(id:number,data:any):Promise<boolean>{
-        await this.userRepository.createQueryBuilder().update(User).set(data).where("id = :id", { id: id }).execute();
-        return true;
+    async update(id:number,data:any):Promise<User>{
+        const updateResult = await this.userRepository.update(id, data);
+        return this.userRepository.findOne(id);
 
     }
-
 }

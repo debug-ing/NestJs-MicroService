@@ -1,35 +1,49 @@
-import {Inject, Injectable} from '@nestjs/common';
-import Any = jasmine.Any;
-import {ClientProxy, ClientProxyFactory, Transport} from "@nestjs/microservices";
-import {AddUserDto} from "./user.dto";
+import {Inject, Injectable, OnModuleInit} from '@nestjs/common';
+
+import {Client, ClientGrpc, ClientProxy, ClientProxyFactory, RpcException, Transport} from "@nestjs/microservices";
+
+import {Metadata} from "@grpc/grpc-js";
+import { Observable } from 'rxjs';
 
 
+interface UserGrpcService {
+    create(data: { email:string,password:string,name: string; lastName: string }): Observable<any>;
+    delete(data:{id:number}):Observable<boolean>;
+    getItem(data:{id:number}):Observable<any>;
+    get(data:{}):Observable<{id:number,email:string,password:string,name:string,lastName:string,createdAt:string,updatedAt:string}[]>;
+
+    update(data:{id:number,email:string,password:string,name:string,last:string}):Observable<any>;
+}
 
 @Injectable()
-export class UserService {
-    private client: ClientProxy
-    constructor() {
-        this.client = ClientProxyFactory.create({
-            transport: Transport.TCP,
-            options: {
-                host: '127.0.0.1',
-                port: 8123
-            }
-        })
+export class UserService  implements  OnModuleInit {
+    private userGrpcService: UserGrpcService;
+
+    constructor(@Inject('user') private client: ClientGrpc) {}
+
+    onModuleInit() {
+        this.userGrpcService =
+            this.client.getService<UserGrpcService>('UserService');
     }
     async get() {
-        return this.client.send('get', "");
+        let data = await this.userGrpcService.get({}).toPromise();
+        console.log(data);
+        return data;
     }
     async getItem(id:number){
-        return this.client.send('getItem', id);
+        let data = await this.userGrpcService.getItem({id:id}).toPromise();
+        return data;
     }
     async add(data:any){
-        return this.client.send("add", data);
+        console.log(data);
+        return await this.userGrpcService.create(data).toPromise();
     }
     async update(id:number,data:any){
-        return this.client.send("update",{id:id,data:data});
+        return await this.userGrpcService.update({id:id,email:data.email,password:data.password,name:data.name,last:data.lastName}).toPromise();
     }
     async delete(id:number){
-        return this.client.send("delete",id);
+        let data = await this.userGrpcService.delete({id:id}).toPromise();
+        return data;
+
     }
 }

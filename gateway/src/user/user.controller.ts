@@ -10,8 +10,6 @@ export class UserController {
     }
     @Get()
     async get(){
-
-        //let any = this.client.emit<Any>('get_all',new Message('Hello World'));
         return this.userService.get();
     }
 

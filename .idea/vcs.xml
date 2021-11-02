@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Micro2/typescript-starter" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/getway/typescript-starter" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/microService/typescript-starter" vcs="Git" />
   </component>

@@ -1,9 +1,12 @@
-import { Controller, Get, Logger } from '@nestjs/common';
-import { MessagePattern } from '@nestjs/microservices';
+import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-  const logger = new Logger('AppController')
+import {GrpcMethod} from "@nestjs/microservices";
+import {Metadata, ServerUnaryCall} from "@grpc/grpc-js";
+import {DeleteDto, UserDto} from "./user/user.dto";
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) { }
+  constructor(private readonly appService: AppService) {}
+
+
 }
