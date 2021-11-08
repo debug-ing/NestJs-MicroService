@@ -1,0 +1,27 @@
+version: "3"
+services:
+  gateway:
+    build: ./gateway
+    volumes:
+      - ./proto:/proto
+    ports:
+      - 8085:3000
+    depends_on:
+      - micro
+  postgres:
+    image: postgres:12
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mahdia@123
+      POSTGRES_DB: Test
+    restart: always
+    ports:
+      - 5432
+  micro:
+    build: ./microService
+    volumes:
+      - ./proto:/proto
+    links:
+      - postgres
+
